@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Hangman</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- first row -->
+    <div class="row">
+
+      <div class="col-md-12">
+            <h1 style="text-align:center;">Hangman</h1>
+      </div>
+
+      
+    </div>
+
+    <!-- second row, game intro -->
+    <div class="row">
+
+        <div class="col-md-12">
+            <p style="text-align:center;">
+                Guess letters one at a time to solve the word puzzle. Type a letter to guess it. 
+                Each time you get the letter correct, it'll show in the word. If you get it wrong, 
+                you lose a try. You can only guess wrong 10 times.
+                
+            </p>
+        </div>         
+
+    </div>
+
+    <!-- third row, where the game is -->
+    <div class="row">
+       
+      <div class="col-md-6 text-center">
+        <div class="card">
+          <div class="card-body">
+            <img style='position: absolute;' class="hangman" id="image1" src="assets/images/1base.png" alt="base">
+            <img style='position: absolute;' class="hangman" id="image2" src="assets/images/2side-pole.png" alt="side pole">
+            <img style='position: absolute;' class="hangman" id="image3" src="assets/images/3top-pole.png" alt="top pole">
+            <img style='position: absolute;' class="hangman" id="image4" src="assets/images/4hanging-pole.png" alt="hanging pole">
+            <img style='position: absolute;' class="hangman" id="image5" src="assets/images/5head.png" alt="head">
+            <img style='position: absolute;' class="hangman" id="image6" src="assets/images/6body.png" alt="body">
+            <img style='position: absolute;' class="hangman" id="image7" src="assets/images/7left-leg.png" alt="left leg">
+            <img style='position: absolute;' class="hangman" id="image8" src="assets/images/8right-leg.png" alt="right leg">
+            <img style='position: absolute;' class="hangman" id="image9" src="assets/images/9right-arm.png" alt="right arm">
+            <img style='position: absolute;' class="hangman" id="image10" src="assets/images/10left-arm.png" alt="left arm">
+            <img class="hangman" id="image11" src="assets/images/11dead.png" alt="dead">
+          </div>
+        </div>    
+      </div>
+
+      <div class="col-md-6 text-center">
+            </br>
+            </br>
+            </br>
+            </br>
+            <p>Type any letter to start playing!</p>
+            </br>
+            </br>
+            </br>
+            </br>
+            <h1 id="answer-array"></h1>
+            </br>
+            </br>
+            </br>
+            <p id="lives-text"></p>
+            </br>
+            <p id="wins-text"></p>
+            <p id="losses-text"></p>
+            </br>
+            </br>
+            <button type="button" class="btn btn-primary" id="reset">Play Again</button>
+      </div> 
+
+    </div>    
+  
+  </div>
+
+  <!-- Javascript -->
+  <!-------------------------------------------------------------------------------------------------------- -->
+  <script type="text/javascript">
+  
+  // words computer will randomly select
+  var words = [
+    "chicken",
+    "yankees", 
+    "coding", 
+    "africa", 
+    "whiteclaw", 
+    "roaming", 
+    "butter", 
+    "newton", 
+    "caravan", 
+    "williamsburg", 
+    "bushwick", 
+    "greenpoint"];
+  
+  //creating variables to hold the number of wins and losses. They start at 0.
+  var wins = 0;
+  var losses = 0;
+  var lives = 10;
+
+  // hangman pieces
+  var imageOne = $("#image1");
+  var imageTwo = $("#image2");
+  var imageThree = $("#image3");
+  var imageFour = $("#image4");
+  var imageFive = $("#image5");
+  var imageSix = $("#image6");
+  var imageSeven = $("#image7");
+  var imageEight = $("#image8");
+  var imageNine = $("#image9");
+  var imageTen = $("#image10");
+  var imageEleven = $("#image11");  
+
+
+  var images = [
+    imageOne,
+    imageTwo,
+    imageThree,
+    imageFour,
+    imageFive,
+    imageSix,
+    imageSeven,
+    imageEight,
+    imageNine,
+    imageTen,
+    imageEleven];
+
+  //create variables that hold reference to the places in the HTML where we want to display things.
+  var winsText = document.getElementById("wins-text");
+  var lossesText = document.getElementById("losses-text");
+  var livesText = document.getElementById("lives-text");
+  var answerArrayText = document.getElementById("answer-array");
+  
+  var chosenWord = words[Math.floor(Math.random() * words.length)];
+  
+  var answerArray = [];
+    for (var i = 0; i < chosenWord.length; i++) {
+      answerArray[i] = "_ ";
+    }
+
+  answerArrayText.textContent = answerArray;
+  
+  console.log(chosenWord);
+  
+  document.onkeyup = function(event) {
+    var userGuess = event.key;
+
+
+
+ 
+
+    if (chosenWord[i] === userGuess) {
+      answerArray[i] = " " + userGuess;
+    } else {
+      lives--;
+      imageOne.animate({ opacity: "1" });
+    }
+
+    
+
+    // for (i=0; i < chosenWord.length; i++) {
+    //   if (chosenWord.charAt(i) === userGuess) {
+    //     answerArray[i] = "" + userGuess;
+    //   }
+    // }
+
+    // for (var i = 0; i < chosenWord.length; i++) {
+    //   if (chosenWord[i] === userGuess) {
+    //     answerArray[j] = userGuess;
+    //   } else {
+    //     lives--;
+    //     imageOne.animate({ opacity: "1" });
+    //   }
+    // }
+
+
+
+
+    livesText.textContent = "Lives left: " + lives;
+    winsText.textContent = "Wins: " + wins;
+    lossesText.textContent = "losses: " + losses;
+
+ 
+
+
+
+
+
+
+
+
+    // if (userGuess === "s") {
+    //   imageOne.animate({ opacity: "1" });
+    // }
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+  }
+  
+  
+  
+  </script>
+
+</body>
+
+</html>
