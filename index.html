@@ -109,37 +109,26 @@
     "bushwick", 
     "greenpoint"];
   
-  //creating variables to hold the number of wins and losses. They start at 0.
+  //creating variables to hold the number of wins, losses, and lives.
   var wins = 0;
   var losses = 0;
   var lives = 10;
 
   // hangman pieces
-  var imageOne = $("#image1");
-  var imageTwo = $("#image2");
-  var imageThree = $("#image3");
-  var imageFour = $("#image4");
-  var imageFive = $("#image5");
-  var imageSix = $("#image6");
-  var imageSeven = $("#image7");
-  var imageEight = $("#image8");
-  var imageNine = $("#image9");
-  var imageTen = $("#image10");
-  var imageEleven = $("#image11");  
-
-
+  var imageid = 0;
   var images = [
-    imageOne,
-    imageTwo,
-    imageThree,
-    imageFour,
-    imageFive,
-    imageSix,
-    imageSeven,
-    imageEight,
-    imageNine,
-    imageTen,
-    imageEleven];
+    $("#image1"),
+    $("#image2"),
+    $("#image3"),
+    $("#image4"),
+    $("#image5"),
+    $("#image6"),
+    $("#image7"),
+    $("#image8"),
+    $("#image9"),
+    $("#image10"),
+    $("#image11")
+  ]
 
   //create variables that hold reference to the places in the HTML where we want to display things.
   var winsText = document.getElementById("wins-text");
@@ -147,32 +136,68 @@
   var livesText = document.getElementById("lives-text");
   var answerArrayText = document.getElementById("answer-array");
   
+  //randomly pick a word
   var chosenWord = words[Math.floor(Math.random() * words.length)];
   
-  var answerArray = [];
-    for (var i = 0; i < chosenWord.length; i++) {
-      answerArray[i] = "_ ";
-    }
+  //display chosen word in underscores
+  var answerArray = new Array(chosenWord.length).fill("_");
+    // for (var i = 0; i < chosenWord.length; i++) {
+    //   answerArray[i] = "_ ";
+    // }
 
-  answerArrayText.textContent = answerArray;
+  
+
+  answerArrayText.textContent = answerArray.join(" ");
   
   console.log(chosenWord);
   
+  //take user input
   document.onkeyup = function(event) {
     var userGuess = event.key;
+    var pos = chosenWord.indexOf(userGuess);
 
+    console.log("userGuess: " + userGuess);
 
+    if (pos != -1) {
 
- 
+      console.log("user guessed a correct letter:" + userGuess);
+      for (var i = 0; i< chosenWord.length; i++) {
+        if (chosenWord.charAt(i) === userGuess) {
+          answerArray[i] = userGuess;
+        }
+      }
+      
+      answerArrayText.textContent = answerArray.join(" ");
 
-    if (chosenWord[i] === userGuess) {
-      answerArray[i] = " " + userGuess;
     } else {
       lives--;
-      imageOne.animate({ opacity: "1" });
+      images[imageid++].animate({ opacity: "1" });
     }
 
-    
+    if (answerArray.join("") === chosenWord) {
+      wins++;
+    } else if (lives <= 0) {
+      losses++;
+
+    }
+
+    function reset () {
+      
+    }
+
+
+ // on click play again button     
+ // funtion reset chosenWord, imageid 0, reset answer array, reset answer array text
+
+    // if (chosenWord[i] === userGuess) {
+    //   answerArray[i] = userGuess;
+    // } else {
+      
+    // }
+
+
+
+
 
     // for (i=0; i < chosenWord.length; i++) {
     //   if (chosenWord.charAt(i) === userGuess) {
