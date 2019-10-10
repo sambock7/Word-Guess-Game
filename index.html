@@ -118,6 +118,8 @@
     var wins = 0;
     var losses = 0;
     var lives = 10;
+    var winAudio = new Audio("tada.mp3");
+    var loseAudio = new Audio("lose.mp3");
 
     // hangman pieces
     var imageid = 0;
@@ -187,8 +189,10 @@
       }
       if (answerArray.join("") === chosenWord) {
         wins++;
+        winAudio.play();
       } else if (lives <= 0) {
         losses++;
+        loseAudio.play();
         answerArrayText.textContent = chosenWord;
       }
 
