@@ -57,8 +57,7 @@
             <img style='position: absolute;' class="hangman" id="image7" src="assets/images/7left-leg.png" alt="left leg">
             <img style='position: absolute;' class="hangman" id="image8" src="assets/images/8right-leg.png" alt="right leg">
             <img style='position: absolute;' class="hangman" id="image9" src="assets/images/9right-arm.png" alt="right arm">
-            <img style='position: absolute;' class="hangman" id="image10" src="assets/images/10left-arm.png" alt="left arm">
-            <img class="hangman" id="image11" src="assets/images/11dead.png" alt="dead">
+            <img class="hangman" id="image10" src="assets/images/10left-arm-dead.png" alt="dead">
           </div>
         </div>    
       </div>
@@ -126,9 +125,13 @@
     $("#image7"),
     $("#image8"),
     $("#image9"),
-    $("#image10"),
-    $("#image11")
+    $("#image10")
   ]
+
+  // function startGame () {
+
+  // }
+
 
   //create variables that hold reference to the places in the HTML where we want to display things.
   var winsText = document.getElementById("wins-text");
@@ -141,12 +144,7 @@
   
   //display chosen word in underscores
   var answerArray = new Array(chosenWord.length).fill("_");
-    // for (var i = 0; i < chosenWord.length; i++) {
-    //   answerArray[i] = "_ ";
-    // }
-
   
-
   answerArrayText.textContent = answerArray.join(" ");
   
   console.log(chosenWord);
@@ -155,11 +153,9 @@
   document.onkeyup = function(event) {
     var userGuess = event.key;
     var pos = chosenWord.indexOf(userGuess);
-
     console.log("userGuess: " + userGuess);
 
     if (pos != -1) {
-
       console.log("user guessed a correct letter:" + userGuess);
       for (var i = 0; i< chosenWord.length; i++) {
         if (chosenWord.charAt(i) === userGuess) {
@@ -168,87 +164,31 @@
       }
       
       answerArrayText.textContent = answerArray.join(" ");
-
     } else {
       lives--;
       images[imageid++].animate({ opacity: "1" });
     }
-
     if (answerArray.join("") === chosenWord) {
       wins++;
     } else if (lives <= 0) {
       losses++;
-
     }
-
-    function reset () {
-      
-    }
-
-
- // on click play again button     
- // funtion reset chosenWord, imageid 0, reset answer array, reset answer array text
-
-    // if (chosenWord[i] === userGuess) {
-    //   answerArray[i] = userGuess;
-    // } else {
-      
-    // }
-
-
-
-
-
-    // for (i=0; i < chosenWord.length; i++) {
-    //   if (chosenWord.charAt(i) === userGuess) {
-    //     answerArray[i] = "" + userGuess;
-    //   }
-    // }
-
-    // for (var i = 0; i < chosenWord.length; i++) {
-    //   if (chosenWord[i] === userGuess) {
-    //     answerArray[j] = userGuess;
-    //   } else {
-    //     lives--;
-    //     imageOne.animate({ opacity: "1" });
-    //   }
-    // }
-
-
-
 
     livesText.textContent = "Lives left: " + lives;
     winsText.textContent = "Wins: " + wins;
     lossesText.textContent = "losses: " + losses;
-
  
-
-
-
-
-
-
-
-
-    // if (userGuess === "s") {
-    //   imageOne.animate({ opacity: "1" });
-    // }
     
-
-
-
-
-    
-
-
-
-
-
-
-
-
   }
   
+  $(".btn").on("click", function() {
+    console.log("you reset it");
+    lives = 10;
+    livesText.textContent = "Lives left: " + lives;
+    imageid = 0;
+    images = [];
+    $(".card-body").html("");
+      });
   
   
   </script>
@@ -256,3 +196,4 @@
 </body>
 
 </html>
+
