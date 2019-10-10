@@ -22,178 +22,197 @@
     <div class="row">
 
       <div class="col-md-12">
-            <h1 style="text-align:center;">Hangman</h1>
+        <h1 style="text-align:center;">Hangman</h1>
       </div>
 
-      
+
     </div>
 
     <!-- second row, game intro -->
     <div class="row">
 
-        <div class="col-md-12">
-            <p style="text-align:center;">
-                Guess letters one at a time to solve the word puzzle. Type a letter to guess it. 
-                Each time you get the letter correct, it'll show in the word. If you get it wrong, 
-                you lose a try. You can only guess wrong 10 times.
-                
-            </p>
-        </div>         
+      <div class="col-md-12">
+        <p style="text-align:center;">
+          Guess letters one at a time to solve the word puzzle. Type a letter to guess it.
+          Each time you get the letter correct, it'll show in the word. If you get it wrong,
+          you lose a try. You can only guess wrong 10 times.
+
+        </p>
+      </div>
 
     </div>
 
     <!-- third row, where the game is -->
     <div class="row">
-       
+
       <div class="col-md-6 text-center">
         <div class="card">
           <div class="card-body">
             <img style='position: absolute;' class="hangman" id="image1" src="assets/images/1base.png" alt="base">
-            <img style='position: absolute;' class="hangman" id="image2" src="assets/images/2side-pole.png" alt="side pole">
-            <img style='position: absolute;' class="hangman" id="image3" src="assets/images/3top-pole.png" alt="top pole">
-            <img style='position: absolute;' class="hangman" id="image4" src="assets/images/4hanging-pole.png" alt="hanging pole">
+            <img style='position: absolute;' class="hangman" id="image2" src="assets/images/2side-pole.png"
+              alt="side pole">
+            <img style='position: absolute;' class="hangman" id="image3" src="assets/images/3top-pole.png"
+              alt="top pole">
+            <img style='position: absolute;' class="hangman" id="image4" src="assets/images/4hanging-pole.png"
+              alt="hanging pole">
             <img style='position: absolute;' class="hangman" id="image5" src="assets/images/5head.png" alt="head">
             <img style='position: absolute;' class="hangman" id="image6" src="assets/images/6body.png" alt="body">
-            <img style='position: absolute;' class="hangman" id="image7" src="assets/images/7left-leg.png" alt="left leg">
-            <img style='position: absolute;' class="hangman" id="image8" src="assets/images/8right-leg.png" alt="right leg">
-            <img style='position: absolute;' class="hangman" id="image9" src="assets/images/9right-arm.png" alt="right arm">
+            <img style='position: absolute;' class="hangman" id="image7" src="assets/images/7left-leg.png"
+              alt="left leg">
+            <img style='position: absolute;' class="hangman" id="image8" src="assets/images/8right-leg.png"
+              alt="right leg">
+            <img style='position: absolute;' class="hangman" id="image9" src="assets/images/9right-arm.png"
+              alt="right arm">
             <img class="hangman" id="image10" src="assets/images/10left-arm-dead.png" alt="dead">
           </div>
-        </div>    
+        </div>
       </div>
 
       <div class="col-md-6 text-center">
-            </br>
-            </br>
-            </br>
-            </br>
-            <p>Type any letter to start playing!</p>
-            </br>
-            </br>
-            </br>
-            </br>
-            <h1 id="answer-array"></h1>
-            </br>
-            </br>
-            </br>
-            <p id="lives-text"></p>
-            </br>
-            <p id="wins-text"></p>
-            <p id="losses-text"></p>
-            </br>
-            </br>
-            <button type="button" class="btn btn-primary" id="reset">Play Again</button>
-      </div> 
+        </br>
+        </br>
+        </br>
+        </br>
+        <p>Type any letter to start playing!</p>
+        </br>
+        </br>
+        </br>
+        </br>
+        <h1 id="answer-array"></h1>
+        </br>
+        </br>
+        </br>
+        <p id="lives-text"></p>
+        </br>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        </br>
+        </br>
+        <button type="button" class="btn btn-primary" id="reset">Play Again</button>
+      </div>
 
-    </div>    
-  
+    </div>
+
   </div>
 
   <!-- Javascript -->
   <!-------------------------------------------------------------------------------------------------------- -->
   <script type="text/javascript">
-  
-  // words computer will randomly select
-  var words = [
-    "chicken",
-    "yankees", 
-    "coding", 
-    "africa", 
-    "whiteclaw", 
-    "roaming", 
-    "butter", 
-    "newton", 
-    "caravan", 
-    "williamsburg", 
-    "bushwick", 
-    "greenpoint"];
-  
-  //creating variables to hold the number of wins, losses, and lives.
-  var wins = 0;
-  var losses = 0;
-  var lives = 10;
 
-  // hangman pieces
-  var imageid = 0;
-  var images = [
-    $("#image1"),
-    $("#image2"),
-    $("#image3"),
-    $("#image4"),
-    $("#image5"),
-    $("#image6"),
-    $("#image7"),
-    $("#image8"),
-    $("#image9"),
-    $("#image10")
-  ]
+    // words computer will randomly select
+    var words = [
+      "chicken",
+      "yankees",
+      "coding",
+      "africa",
+      "whiteclaw",
+      "roaming",
+      "butter",
+      "newton",
+      "caravan",
+      "williamsburg",
+      "bushwick",
+      "greenpoint"];
 
-  // function startGame () {
+    //creating variables to hold the number of wins, losses, and lives.
+    var wins = 0;
+    var losses = 0;
+    var lives = 10;
 
-  // }
+    // hangman pieces
+    var imageid = 0;
+    var images = [
+      $("#image1"),
+      $("#image2"),
+      $("#image3"),
+      $("#image4"),
+      $("#image5"),
+      $("#image6"),
+      $("#image7"),
+      $("#image8"),
+      $("#image9"),
+      $("#image10")
+    ]
 
 
-  //create variables that hold reference to the places in the HTML where we want to display things.
-  var winsText = document.getElementById("wins-text");
-  var lossesText = document.getElementById("losses-text");
-  var livesText = document.getElementById("lives-text");
-  var answerArrayText = document.getElementById("answer-array");
-  
-  //randomly pick a word
-  var chosenWord = words[Math.floor(Math.random() * words.length)];
-  
-  //display chosen word in underscores
-  var answerArray = new Array(chosenWord.length).fill("_");
-  
-  answerArrayText.textContent = answerArray.join(" ");
-  
-  console.log(chosenWord);
-  
-  //take user input
-  document.onkeyup = function(event) {
-    var userGuess = event.key;
-    var pos = chosenWord.indexOf(userGuess);
-    console.log("userGuess: " + userGuess);
+    var chosenWord;
+    var answerArray;
 
-    if (pos != -1) {
-      console.log("user guessed a correct letter:" + userGuess);
-      for (var i = 0; i< chosenWord.length; i++) {
-        if (chosenWord.charAt(i) === userGuess) {
-          answerArray[i] = userGuess;
-        }
-      }
-      
+    function startGame() {
+      chosenWord = words[Math.floor(Math.random() * words.length)];
+      answerArray = new Array(chosenWord.length).fill("_");
       answerArrayText.textContent = answerArray.join(" ");
-    } else {
-      lives--;
-      images[imageid++].animate({ opacity: "1" });
-    }
-    if (answerArray.join("") === chosenWord) {
-      wins++;
-    } else if (lives <= 0) {
-      losses++;
+      imageid = 0;
+      $(".hangman").css("opacity", 0);
+      console.log(chosenWord);
     }
 
-    livesText.textContent = "Lives left: " + lives;
-    winsText.textContent = "Wins: " + wins;
-    lossesText.textContent = "losses: " + losses;
- 
-    
-  }
-  
-  $(".btn").on("click", function() {
-    console.log("you reset it");
-    lives = 10;
-    livesText.textContent = "Lives left: " + lives;
-    imageid = 0;
-    images = [];
-    $(".card-body").html("");
-      });
-  
-  
+
+
+
+    //create variables that hold reference to the places in the HTML where we want to display things.
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var livesText = document.getElementById("lives-text");
+    var answerArrayText = document.getElementById("answer-array");
+
+    //randomly pick a word
+    // var chosenWord = words[Math.floor(Math.random() * words.length)];
+
+    //display chosen word in underscores
+    // var answerArray = new Array(chosenWord.length).fill("_");
+
+    startGame();
+
+    console.log(chosenWord);
+
+    //take user input
+    document.onkeyup = function (event) {
+      var userGuess = event.key;
+      var pos = chosenWord.indexOf(userGuess);
+      console.log("userGuess: " + userGuess);
+
+      if (pos != -1) {
+        console.log("user guessed a correct letter:" + userGuess);
+        for (var i = 0; i < chosenWord.length; i++) {
+          if (chosenWord.charAt(i) === userGuess) {
+            answerArray[i] = userGuess;
+          }
+        }
+
+        answerArrayText.textContent = answerArray.join(" ");
+      } else {
+        lives--;
+        images[imageid++].animate({ opacity: "1" });
+      }
+      if (answerArray.join("") === chosenWord) {
+        wins++;
+      } else if (lives <= 0) {
+        losses++;
+        answerArrayText.textContent = chosenWord;
+      }
+
+      livesText.textContent = "Lives left: " + lives;
+      winsText.textContent = "Wins: " + wins;
+      lossesText.textContent = "losses: " + losses;
+
+
+    }
+    // }
+    $(".btn").on("click", function () {
+      console.log("you reset it");
+      lives = 10;
+      livesText.textContent = "Lives left: " + lives;
+      // imageid = 0;
+      // images = [];
+      // $(".card-body").html("");
+      // function startGame ();
+      startGame();
+    });
+
+
   </script>
 
 </body>
 
 </html>
-
