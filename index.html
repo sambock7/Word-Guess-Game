@@ -83,6 +83,8 @@
         </br>
         <p id="hint-text"></p>
         </br>
+        <p id="guesses-text"></p>
+        </br>
         <p id="lives-text"></p>
         </br>
         <p id="wins-text"></p>
@@ -179,6 +181,7 @@
       $(".hangman").css("opacity", 0);
       console.log(chosenWord);
       hintText.textContent = "";
+      guessesText.textContent = "";
     }
 
 
@@ -190,6 +193,7 @@
     var livesText = document.getElementById("lives-text");
     var answerArrayText = document.getElementById("answer-array");
     var hintText = document.getElementById("hint-text");
+    var guessesText = document.getElementById("guesses-text");
     
 
 
@@ -229,6 +233,7 @@
       livesText.textContent = "Lives left: " + lives;
       winsText.textContent = "Wins: " + wins;
       lossesText.textContent = "losses: " + losses;
+      // guessesText.textContent = "Guessed letters: " + userGuess.join(" ");
 
 
     }

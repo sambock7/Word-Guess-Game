@@ -1,6 +1,8 @@
 # Word-Guess-Game
 Homework week 3
 
+LINK TO GAME: https://sambock7.github.io/Word-Guess-Game/ 
+
 1. need an array of words to solve 
 
 2. user picks a letter, can't pick the same letter twice
